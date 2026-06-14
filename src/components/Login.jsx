@@ -11,7 +11,7 @@ function Login({ navigateTo }) {
     // Mock login delay
     setTimeout(() => {
       setIsLoading(false);
-      alert('Logged in successfully!');
+      navigateTo('tracking');
     }, 1500);
   };
 

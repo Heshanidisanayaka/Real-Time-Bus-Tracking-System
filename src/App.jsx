@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import ForgotPassword from './components/ForgotPassword';
+import LiveTracking from './components/LiveTracking';
 
 function App() {
   const [currentView, setCurrentView] = useState('login');
@@ -9,6 +10,10 @@ function App() {
   const navigateTo = (view) => {
     setCurrentView(view);
   };
+
+  if (currentView === 'tracking') {
+    return <LiveTracking navigateTo={navigateTo} />;
+  }
 
   return (
     <div className="app-container">
