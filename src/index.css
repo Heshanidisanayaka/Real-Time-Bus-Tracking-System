@@ -493,3 +493,78 @@ body {
   text-align: center;
   padding: 1rem 0;
 }
+
+/* Timeline Styles */
+.timeline-header {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 1.5rem 0 1rem;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 1rem;
+  min-height: 3.5rem;
+}
+
+.timeline-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20px;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  border: 3px solid var(--primary);
+  z-index: 2;
+}
+
+.timeline-line {
+  flex: 1;
+  width: 2px;
+  background-color: var(--border-color);
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.timeline-content {
+  padding-bottom: 1.5rem;
+  flex: 1;
+}
+
+.timeline-stop-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-metrics {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.metric-eta {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.metric-divider {
+  color: var(--border-color);
+}

@@ -75,19 +75,26 @@ function LiveTracking({ navigateTo }) {
                   <span className="dot"></span> {selectedBus.status.charAt(0).toUpperCase() + selectedBus.status.slice(1)}
                 </div>
                 
-                <div className="info-list">
-                  <div className="info-item">
-                    <span className="label">Next Stop:</span>
-                    <span className="value">{selectedBus.nextStop}</span>
-                  </div>
-                  <div className="info-item">
-                    <span className="label">ETA:</span>
-                    <span className="value">{selectedBus.eta}</span>
-                  </div>
-                  <div className="info-item">
-                    <span className="label">Speed:</span>
-                    <span className="value">{selectedBus.speed}</span>
-                  </div>
+                <h4 className="timeline-header">Upcoming Stops & ETA</h4>
+                <div className="timeline-container">
+                  {selectedBus.upcomingStops?.map((stop, index) => (
+                    <div className="timeline-item" key={index}>
+                      <div className="timeline-marker">
+                        <div className="timeline-dot"></div>
+                        {index < selectedBus.upcomingStops.length - 1 && <div className="timeline-line"></div>}
+                      </div>
+                      <div className="timeline-content">
+                        <div className="timeline-stop-name">{stop.name}</div>
+                        <div className="timeline-metrics">
+                          <span className="metric-eta">{stop.eta}</span>
+                          <span className="metric-divider">•</span>
+                          <span className="metric-dist">{stop.distance}</span>
+                          <span className="metric-divider">•</span>
+                          <span className="metric-time">{stop.timeRemaining}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
               
