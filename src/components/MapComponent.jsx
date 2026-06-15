@@ -33,15 +33,36 @@ const createBusIcon = (rotation) => {
   });
 };
 
-function MapComponent() {
-  const [position, setPosition] = useState([40.7128, -74.0060]); // Starting in NYC
+// Helper component to center map when bus changes
+function MapUpdater({ center }) {
+  const map = useMap();
+  useEffect(() => {
+    if (center) {
+      map.setView(center, map.getZoom());
+    }
+  }, [center, map]);
+  return null;
+}
+
+function MapComponent({ selectedBus }) {
+  const defaultCenter = [40.7128, -74.0060];
+  const [position, setPosition] = useState(selectedBus ? selectedBus.startCoordinates : defaultCenter);
   const [rotation, setRotation] = useState(0);
+
+  // Update starting position when a new bus is selected
+  useEffect(() => {
+    if (selectedBus) {
+      setPosition(selectedBus.startCoordinates);
+    }
+  }, [selectedBus]);
 
   // Simulate bus movement
   useEffect(() => {
+    if (!selectedBus) return;
+
     let angle = 0;
-    const radius = 0.01;
-    const center = [40.7128, -74.0060];
+    const radius = 0.005; // Make the circle a bit smaller
+    const center = selectedBus.startCoordinates;
 
     const interval = setInterval(() => {
       angle += 0.1;
@@ -56,19 +77,24 @@ function MapComponent() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [selectedBus]);
+
+  const mapCenter = selectedBus ? selectedBus.startCoordinates : defaultCenter;
 
   return (
-    <MapContainer center={[40.7128, -74.0060]} zoom={13} style={{ height: '100%', width: '100%', borderRadius: '16px' }}>
+    <MapContainer center={mapCenter} zoom={14} style={{ height: '100%', width: '100%', borderRadius: '16px' }}>
+      <MapUpdater center={mapCenter} />
       <TileLayer
         url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
       />
-      <Marker position={position} icon={createBusIcon(rotation)}>
-        <Popup>
-          <strong>Bus #8492</strong><br/>Route 42 - Downtown Express
-        </Popup>
-      </Marker>
+      {selectedBus && (
+        <Marker position={position} icon={createBusIcon(rotation)}>
+          <Popup>
+            <strong>Bus {selectedBus.busNumber}</strong><br/>{selectedBus.route} - {selectedBus.destination}
+          </Popup>
+        </Marker>
+      )}
     </MapContainer>
   );
 }
