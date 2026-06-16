@@ -5,6 +5,8 @@ export const mockBuses = [
     route: 'Route 42',
     destination: 'Downtown Express',
     capacity: '60% Full',
+    occupancy: 'medium', // low, medium, high, full
+    farePerKm: 0.5, // dollars per km
     status: 'live',
     startCoordinates: [40.7128, -74.0060],
     upcomingStops: [
@@ -19,6 +21,8 @@ export const mockBuses = [
     route: 'Route 15',
     destination: 'Uptown Local',
     capacity: '80% Full',
+    occupancy: 'high',
+    farePerKm: 0.5,
     status: 'live',
     startCoordinates: [40.7580, -73.9855],
     upcomingStops: [
