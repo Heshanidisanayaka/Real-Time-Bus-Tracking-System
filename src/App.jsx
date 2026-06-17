@@ -3,6 +3,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import ForgotPassword from './components/ForgotPassword';
 import LiveTracking from './components/LiveTracking';
+import AdminDashboard from './components/AdminDashboard';
 
 function App() {
   const [currentView, setCurrentView] = useState('login');
@@ -13,6 +14,9 @@ function App() {
 
   if (currentView === 'tracking') {
     return <LiveTracking navigateTo={navigateTo} />;
+  }
+  if (currentView === 'admin') {
+    return <AdminDashboard navigateTo={navigateTo} />;
   }
 
   return (
@@ -30,6 +34,10 @@ function App() {
           {currentView === 'login' && <Login navigateTo={navigateTo} />}
           {currentView === 'signup' && <SignUp navigateTo={navigateTo} />}
           {currentView === 'forgot-password' && <ForgotPassword navigateTo={navigateTo} />}
+          {/* Add admin login button for demonstration */}
+          {currentView === 'login' && (
+            <button className="nav-btn" onClick={() => navigateTo('admin')}>Admin Dashboard</button>
+          )}
         </div>
       </div>
     </div>
