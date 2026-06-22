@@ -1,0 +1,11 @@
+{
+  "adminDashboard.title": "Admin Dashboard",
+  "adminDashboard.logout": "Logout",
+  "adminDashboard.busManagement": "Bus Management",
+  "adminDashboard.ticketing": "Ticketing",
+  "adminDashboard.language": "Language",
+  "adminDashboard.selectLanguage": "Select Language",
+  "voice.toggle": "Voice Announcements",
+  "announcement.nextStop": "Next stop: {stop}, arriving in {eta}",
+  "announcement.arrival": "Arrived at {stop}"
+}

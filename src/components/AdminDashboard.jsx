@@ -1,6 +1,7 @@
 // src/components/AdminDashboard.jsx
 import React, { useContext, useEffect, useState } from 'react';
 import { AdminContext } from '../context/AdminContext';
+import { LanguageContext } from '../context/LanguageContext';
 import { loadBuses, deleteBus } from '../api/mockBusApi';
 import BusTable from './BusTable';
 import BusManagementForm from './BusManagementForm';
@@ -42,7 +43,7 @@ const AdminDashboard = () => {
     <TicketProvider>
       <div className="admin-dashboard">
         <header className="admin-header">
-          <h2>Admin Dashboard</h2>
+          <h2>{t('adminDashboard.title')}</h2>
           <button className="logout-btn" onClick={logout}>Logout</button>
         </header>
         <nav className="admin-nav">

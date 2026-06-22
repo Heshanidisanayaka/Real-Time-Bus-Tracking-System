@@ -1,0 +1,24 @@
+{
+  "adminDashboard": {
+    "title": "පරිපාලක පුවරුව",
+    "logout": "පිටවන්න",
+    "busManagement": {
+      "title": "බස් කළමනාකරණ",
+      "button": "බස් කළමනාකරණය"
+    },
+    "ticketing": {
+      "title": "ඩිජිටල් ටිකට් එක",
+      "button": "ටිකට් පද්ධතිය"
+    },
+    "language": {
+      "select": "භාෂාව",
+      "english": "ඉංග්‍රීසි",
+      "sinhala": "සිංහල",
+      "tamil": "தமிழ்"
+    }
+  },
+  "announcement": {
+    "nextStop": "ඊළඟ නවතා ගැනීම: {stop}, {eta} තුළ",
+    "arrival": "{stop} ළඟට පැමිණේ"
+  }
+}

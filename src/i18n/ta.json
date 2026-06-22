@@ -1,0 +1,10 @@
+{
+  "adminDashboard": {
+    "title": "நிர்வாக டாஷ்போர்டு",
+    "logout": "வெளியேறு",
+    "busManagement": "பஸ் மேலாண்மை",
+    "ticketing": "டிக்கெட்",
+    "language": "மொழி",
+    "selectLanguage": "மொழியைத் தேர்ந்தெடுக்கவும்"
+  }
+}

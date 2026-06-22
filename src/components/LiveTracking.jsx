@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import MapComponent from './MapComponent';
 import { mockBuses } from '../data/mockBuses';
-
+import { LanguageContext } from '../context/LanguageContext';
+import VoiceToggle from './VoiceToggle';
 function LiveTracking({ navigateTo }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedBus, setSelectedBus] = useState(mockBuses[0]);
-
+  const [isVoiceEnabled, setIsVoiceEnabled] = useState(false);
+  const { t } = useContext(LanguageContext);
+  const prevStopRef = useRef(null);
   // Unified search logic: filter by bus number, route, or destination
   const filteredBuses = mockBuses.filter((bus) => {
     const query = searchQuery.toLowerCase();
@@ -16,6 +19,32 @@ function LiveTracking({ navigateTo }) {
     );
   });
 
+  useEffect(() => {
+    if (isVoiceEnabled && selectedBus) {
+      const nextStop = selectedBus.upcomingStops?.[0];
+      const template = t('announcement.nextStop');
+      const announcement = nextStop ? template.replace('{stop}', nextStop.name).replace('{eta}', nextStop.eta) : `Now tracking bus ${selectedBus.busNumber} on route ${selectedBus.route} to ${selectedBus.destination}. Status is ${selectedBus.status}.`;
+      const utterance = new SpeechSynthesisUtterance(announcement);
+      window.speechSynthesis.speak(utterance);
+    }
+  }, [selectedBus, isVoiceEnabled]);
+
+  // Arrival alert for previous stop
+  useEffect(() => {
+    if (!isVoiceEnabled || !selectedBus) return;
+    const upcoming = selectedBus.upcomingStops || [];
+    const currentNext = upcoming[0];
+    const prev = prevStopRef.current;
+    if (prev && currentNext && prev !== currentNext.name) {
+      const arrivalMsg = t('announcement.arrival').replace('{stop}', prev);
+      const utter = new SpeechSynthesisUtterance(arrivalMsg);
+      window.speechSynthesis.speak(utter);
+    }
+    if (currentNext) {
+      prevStopRef.current = currentNext.name;
+    }
+  }, [selectedBus.upcomingStops, isVoiceEnabled]);
+
   return (
     <div className="live-tracking-dashboard">
       <header className="dashboard-header">
@@ -23,6 +52,7 @@ function LiveTracking({ navigateTo }) {
           <h2>Live Transit</h2>
         </div>
         <nav className="header-nav">
+                    <VoiceToggle enabled={isVoiceEnabled} setEnabled={setIsVoiceEnabled} />
           <button className="nav-btn active">Map</button>
           <button className="nav-btn" onClick={() => navigateTo('login')}>Logout</button>
         </nav>
