@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Colombo",
+    "district": "Colombo",
+    "lat": 6.9271,
+    "lng": 79.8612
+  },
+  {
+    "name": "Kandy",
+    "district": "Kandy",
+    "lat": 7.2906,
+    "lng": 80.6337
+  },
+  {
+    "name": "Galle",
+    "district": "Galle",
+    "lat": 6.0535,
+    "lng": 80.2210
+  },
+  {
+    "name": "Jaffna",
+    "district": "Jaffna",
+    "lat": 9.6688,
+    "lng": 80.0077
+  },
+  {
+    "name": "Negombo",
+    "district": "Gampaha",
+    "lat": 7.2087,
+    "lng": 79.8343
+  },
+  {
+    "name": "Anuradhapura",
+    "district": "Anuradhapura",
+    "lat": 8.3114,
+    "lng": 80.4037
+  },
+  {
+    "name": "Matara",
+    "district": "Matara",
+    "lat": 5.9497,
+    "lng": 80.5350
+  },
+  {
+    "name": "Kurunegala",
+    "district": "Kurunegala",
+    "lat": 7.4925,
+    "lng": 80.3635
+  },
+  {
+    "name": "Trincomalee",
+    "district": "Trincomalee",
+    "lat": 8.5871,
+    "lng": 81.2150
+  },
+  {
+    "name": "Ratnapura",
+    "district": "Ratnapura",
+    "lat": 6.7020,
+    "lng": 80.3980
+  }
+]
