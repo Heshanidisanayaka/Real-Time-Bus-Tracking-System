@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect } from "react";
 
 // Inline translations for three languages
 const translations = {
-
+  en: {
     adminDashboard: {
       title: "Admin Dashboard",
       logout: "Logout",
